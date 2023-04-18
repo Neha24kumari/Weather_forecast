@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>headerlinks}}
+</head>
+<body>
+   {{>navbar}}
+    <!--main header-->
+    <div class="containter-fluid main_header">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="main_content">
+                    <form class="temp_form">
+                        <input type="text" id="cityName" placeholder="Enter you city name" autocomplete="off">
+                        <input type="Submit" value="Search" id="submitBtn">
+                    </form>
+
+                </div>
+                <div class="tempInformation">
+                    <div class="top_layer">
+                        <p id="day">Monday</p>
+                        <p id="today_date">20/04/2023</p>
+                    </div>
+                    <div class="main_layer ">
+                        <p id="city_name">Output here</p>
+                        <div class="middle_layer data_hide">
+                            <p class="temp"><span id="temp_real_val">0</span> <sup>o</sup>C </p>
+                            <p id="temp_status"> <i class="fas fa-cloud" ></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer code-->
+    {{>footer}}
+
+    <script src="js/main.js"></script>
+    <script>
+        const getCurrentDay = () => {
+            
+            let weekday = new Array(7);
+            weekday[0] = "Sun";
+            weekday[1] = "Mon";
+            weekday[2] = "Tue";
+            weekday[3] = "Wed";
+            weekday[4] = "Thr";
+            weekday[5] = "Fri";
+            weekday[6] = "Sat";
+
+            let currentTime = new Date();
+             days = weekday[currentTime.getDay()];
+            let day = document.getElementById('day');
+
+            day.innerText= days;
+        };
+        getCurrentDay();
+    </script>
+    <script>
+        let dateToday = document.getElementById('today_date');
+        let today = new Date();
+        let day = `${today.getDate() <10 ? "0" : " "} ${today.getDate()}`;
+        let month = `${(today.getMonth() +1) <10 ? "0" : " "} ${today.getMonth() +1}`;
+        let year = today.getFullYear();
+
+        dateToday.textContent = `${day}/${month}/${year}`;
+    </script>
+</body>
+</html>
